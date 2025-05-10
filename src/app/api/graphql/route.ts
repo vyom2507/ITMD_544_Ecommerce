@@ -1,7 +1,7 @@
-// src/app/api/graphql/route.ts
 import { ApolloServer } from '@apollo/server'
 import { startServerAndCreateNextHandler } from '@as-integrations/next'
 import { PrismaClient } from '@prisma/client'
+import { NextRequest } from 'next/server'
 
 const prisma = new PrismaClient()
 
@@ -29,6 +29,6 @@ const server = new ApolloServer({
   resolvers,
 })
 
-const handler = startServerAndCreateNextHandler(server)
+const handler = startServerAndCreateNextHandler<NextRequest>(server)
 
-export { handler as GET, handler as POST }
+export default handler
